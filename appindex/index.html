@@ -26,9 +26,13 @@
     </div>
     <script>
           // アプリを開く。アプリがインストールされていなければサイトを開く。
-          function launchApp() {
-              var IOS_SCHEME = 'jp.goo.bousai.osakaapp://';
-              var IOS_STORE = 'https://itunes.apple.com/app/id1092387835';
+          function launchApp( num ) {
+
+              var ios_scheme[0] = 'jp.goo.bousai.osakaapp://';
+              var ios_store[0]  = 'https://itunes.apple.com/app/id1092387835';
+
+              var IOS_SCHEME = ios_scheme[ num ];
+              var IOS_STORE = ios_store[ num ];
               var ANDROID_SCHEME = 'https://play.google.com/store/apps/details?id=jp.ne.goo.bousai.osakaapp&amp;hl=ja';
               var ANDROID_PACKAGE = 'jp.ne.goo.bousai.osakaapp';
               var PC_SITE = 'https://www.city.osaka.lg.jp/kikikanrishitsu/page/0000345020.html'
@@ -54,13 +58,13 @@
       </script>
 
 <div class="block">
-  <div id="header">イラストをタップすると動画が見れます</div>
+  <div id="header">アイコンをタップするとアプリが起動します</div>
   <div class="button-row">
-	  <button type="button" onclick="launchApp()"><img src="outlet.png" alt="コンセント"></button>
+	  <button type="button" onclick="launchApp(0)"><img src="outlet.png" alt="コンセント"></button>
 	  <button type="button" onclick="location.href='https://youtu.be/pXLLYV8ta0A';"><img src="stove.png" alt="ストーブ"></button>
   </div>
   <div class="button-row">
-    <div class="label">コンセント</div>
+    <div class="label">大阪市防災アプリ</div>
     <div class="label">ストーブ</div>
   </div>
   <div class="button-row">
