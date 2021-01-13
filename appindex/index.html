@@ -21,10 +21,39 @@
   <meta property="fb:app_id" content="1950423071901347"/>
 </head>
 <body>
+    <script>
+          // アプリを開く。アプリがインストールされていなければサイトを開く。
+          function launchApp() {
+              var IOS_SCHEME = 'jp.goo.bousai.osakaapp://';
+              var IOS_STORE = 'https://itunes.apple.com/app/id1092387835';
+              var ANDROID_SCHEME = 'https://play.google.com/store/apps/details?id=jp.ne.goo.bousai.osakaapp&amp;hl=ja';
+              var ANDROID_PACKAGE = 'jp.ne.goo.bousai.osakaapp';
+              var PC_SITE = 'https://www.city.osaka.lg.jp/kikikanrishitsu/page/0000345020.html'
+
+              var userAgent = navigator.userAgent.toLowerCase();
+              // iPhone端末ならアプリを開くかApp Storeを開く。
+              if (userAgent.search(/iphone|ipad|ipod/) > -1) {
+                  launch_frame.location.href = IOS_SCHEME + '://';
+                  setTimeout(function() {
+                      location.href = IOS_STORE;
+                  }, 500);
+              }
+              // Android端末ならアプリを開くかGoogle Playを開く。
+              else if (userAgent.search(/android/) > -1) {
+                  document.location = 'intent://#Intent;scheme=' + ANDROID_SCHEME
+                          + ';package=' + ANDROID_PACKAGE + ';end';
+              }
+              // その他・不明・PCなどの場合はサイトを開く。
+              else {
+                  document.location = PC_SITE;
+              }
+          }
+      </script>
+
 <div class="block">
   <div id="header">イラストをタップすると動画が見れます</div>
   <div class="button-row">
-	  <button type="button" onclick="location.href='https://youtu.be/aSQeIwpHbpo';"><img src="outlet.png" alt="コンセント"></button>
+	  <button type="button" onclick="launchApp()"><img src="outlet.png" alt="コンセント"></button>
 	  <button type="button" onclick="location.href='https://youtu.be/pXLLYV8ta0A';"><img src="stove.png" alt="ストーブ"></button>
   </div>
   <div class="button-row">
